@@ -2,7 +2,7 @@
 
 The basis for [myBinder](https://mybinder.readthedocs.io/en/latest/) instances working with an "overclocked" Julia system.
 
-Specifically, we use [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl) to "bake" the `Plots` package into our system image. As Simon Danisch points out in his [article](https://medium.com/@sdanisch/compiling-julia-binaries-ddd6d4e0caf4) on the tool: 
+Specifically, we use [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl) to "bake" the `Plots, DataFrames, GR` and `Query` packages into our system image. As Simon Danisch points out in his [article](https://medium.com/@sdanisch/compiling-julia-binaries-ddd6d4e0caf4) on the tool: 
 
 > Julia so far only offers precompilation, which just caches the result of Julia’s lowering pass — which is at most half of the total compilation cost.
 
