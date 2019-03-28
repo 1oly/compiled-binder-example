@@ -12,6 +12,8 @@ The advantage of PackageCompiler is that you can pre-pay the _entire_ compilatio
 
 Click the badge below to spin up your own Binder instance. That's it!
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arnavs/compiled-binder-example/v0.1.0)
+
 ## Adaptation
 
 > How do I add new packages to "bake in?"
