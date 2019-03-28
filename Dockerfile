@@ -67,5 +67,4 @@ RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernel
 
 # Copy in files
 USER $NB_USER
-COPY notebooks/ ${HOME}/notebooks
-RUN sudo chown -R ${NB_USER} notebooks
+COPY --chown=1000 . ${HOME}
