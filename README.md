@@ -31,7 +31,7 @@ That is, first add the package in the `pkg\"add PackageCompiler Plots...\"`, and
 You can edit the next line of the Dockerfile: 
 
 ```
-RUN julia -e "using Pkg; pkg\"add IJulia Parameters\""
+RUN julia -e "using Pkg; pkg\"add IJulia Parameters\"; pkg\"precompile\""
 ```
 
 > How do I build set up myBinder instances from my own image?

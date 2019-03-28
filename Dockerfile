@@ -56,7 +56,7 @@ RUN mkdir /etc/julia && \
 USER $NB_USER 
 RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots DataFrames GR Query\"; using PackageCompiler; compile_incremental(:Plots, :DataFrames, :GR, :Query, force = true)"
 # QELP, QELAP
-RUN julia -e "using Pkg; pkg\"add IJulia Parameters\""
+RUN julia -e "using Pkg; pkg\"add IJulia Parameters\"; pkg\"precompile\""
 
 # Jupyter kernelspec stuff 
 USER root 
