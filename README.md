@@ -14,17 +14,27 @@ Click the badge below to spin up your own Binder instance. That's it!
 
 ## Adaptation
 
-To add new packages to "bake in": 
+> How do I add new packages to "bake in?"
 
-[EDIT HERE]
+You can edit the following line in the Dockerfile: 
 
-To add new packages that aren't baked in: 
+```
+RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots DataFrames GR Query\"; using PackageCompiler; compile_incremental(:Plots, :DataFrames, GR, :Query, force = true)"
+```
 
-[EDIT HERE]
+That is, first add the package in the `pkg\"add PackageCompiler Plots...\"`, and then add it to the `compile_incremental(:Plots, :DataFrames, ...)`
 
-You can then set up your own binder link for the resulting repo by following the instructions: 
+> How do I add new packages that aren't baked-in?
 
-[EDIT HERE]
+You can edit the next line of the Dockerfile: 
+
+```
+RUN julia -e "using Pkg; pkg\"add IJulia Parameters\""
+```
+
+> How do I build set up myBinder instances from my own image?
+
+Once you have a Dockerfile, set it up in a public GitHub repository, and follow the instructions at the [myBinder website](https://mybinder.org).
 
 ## Contributions, etc. 
 
