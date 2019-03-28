@@ -67,8 +67,5 @@ RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernel
 
 # Copy in files
 USER $NB_USER
-COPY demo.ipynb ${HOME}
-USER root 
-RUN chown -R ${NB_USER} demo.ipynb
-# Set user for container 
-USER $NB_USER 
+COPY notebooks/ ${HOME}/notebooks
+RUN sudo chown -R ${NB_USER} notebooks
