@@ -65,4 +65,10 @@ RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernel
     rm -rf $HOME/.local && \
     fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
 
+# Copy in files
+USER $NB_USER
+COPY demo.ipynb ${HOME}
+USER root 
+RUN chown -R ${NB_USER} demo.ipynb
+# Set user for container 
 USER $NB_USER 
