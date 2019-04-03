@@ -54,7 +54,7 @@ RUN mkdir /etc/julia && \
 
 # PackageCompiler stuff
 USER $NB_USER
-RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots Sundials Parameters SimpleDifferentialOperators NLopt\"; using PackageCompiler; compile_incremental(:Plots, :Sundials, :Parameters, :SimpleDifferentialOperators, :NLopt, force = true)"
+RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots Sundials Parameters SimpleDifferentialOperators NLopt\"; using PackageCompiler; compile_package(\"Plots\", \"Sundials\", \"Parameters\", \"SimpleDifferentialOperators\", \"NLopt\", force = true)"
 # QELP, QELAP
 RUN julia -e "using Pkg; pkg\"add IJulia\"; pkg\"precompile\""
 
