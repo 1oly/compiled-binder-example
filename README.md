@@ -12,7 +12,7 @@ The advantage of PackageCompiler is that you can pre-pay the _entire_ compilatio
 
 Click the badge below to spin up your own Binder instance (as of `v0.2.1` of this repo.) That's it! 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arnavs/compiled-binder-example/v0.2.1?filepath=notebooks/demo.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arnavs/compiled-binder-example/v0.2.2?filepath=notebooks/demo.ipynb)
 
 And here is a link to `master`. **Note:** Because of how Binder is built, this link will often be slower than the static tag above. 
 
