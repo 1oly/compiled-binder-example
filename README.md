@@ -14,6 +14,8 @@ Click the badge below to spin up your own Binder instance. That's it!
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arnavs/compiled-binder-example/v0.2.1?filepath=notebooks/demo.ipynb)
 
+**Note:** This link is pegged to a static tag of the repo (`v0.2.1`). It's much faster that way, as otherwise you will have to wait for Binder to build a new Docker image (if there's new activity in your repo.)
+
 ## Adaptation
 
 > How do I add new packages to "bake in?"
