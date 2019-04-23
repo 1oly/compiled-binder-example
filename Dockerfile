@@ -1,39 +1,39 @@
-# Copyright (c) Jupyter Development Team. 
-# Distributed under the terms of the Modified BSD License. 
-# Modified by the QuantEcon Development Team. 
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+# Modified by the QuantEcon Development Team.
 
 # This contains the minimal set of assets needed to run the lectures and develop in Julia/Python.
 # If you need more, consider pulling QuantEcon/all-notebook.
 
-# Setup instructions 
+# Setup instructions
 # base-notebook is the smallest one
 FROM jupyter/base-notebook:59b402ce701d
 LABEL maintainer="QuantEcon Project <admin@quantecon.org>"
-USER root 
+USER root
 
-# Linux setup 
+# Linux setup
 RUN apt-get update && apt-get install -yq --no-install-recommends \
-    build-essential \ 
-    git \ 
-    pandoc \ 
+    build-essential \
+    git \
+    pandoc \
     libsm6 \
     libxext-dev \
     libxrender1 \
-    inkscape \ 
-    sudo && \ 
+    inkscape \
+    sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Julia setup 
+# Julia setup
 # JULIA_PKGDIR will soon be deprecated; keep an eye on the jupyter upstream to see the new standard
 ENV JULIA_PKGDIR=/opt/julia
 ENV JULIA_VERSION=1.1.0
 
-# sudo setup 
+# sudo setup
 ADD /sudoers.txt /etc/sudoers
 RUN chmod 440 /etc/sudoers
 
-# Install Julia 
+# Install Julia
 USER $NB_USER
 RUN mkdir /opt/julia-${JULIA_VERSION} && \
     cd /tmp && \
@@ -44,7 +44,7 @@ RUN mkdir /opt/julia-${JULIA_VERSION} && \
 RUN sudo ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
 
 # Show Julia where conda libraries are
-USER root 
+USER root
 RUN mkdir /etc/julia && \
     echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> /etc/julia/juliarc.jl && \
     # Create JULIA_PKGDIR \
@@ -53,13 +53,13 @@ RUN mkdir /etc/julia && \
     fix-permissions $JULIA_PKGDIR
 
 # PackageCompiler stuff
-USER $NB_USER 
-RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots DataFrames GR Query\"; using PackageCompiler; compile_incremental(:Plots, :DataFrames, :GR, :Query, force = true)"
+USER $NB_USER
+RUN julia -e "using Pkg; pkg\"add PackageCompiler Plots DataFrames GR Query https://gitlab.windenergy.dtu.dk/ollyl/AeroAcoustics.jl\"; using PackageCompiler; compile_incremental(:Plots, :DataFrames, :GR, :Query, force = true)"
 # QELP, QELAP
 RUN julia -e "using Pkg; pkg\"add IJulia Parameters\"; pkg\"precompile\""
 
-# Jupyter kernelspec stuff 
-USER root 
+# Jupyter kernelspec stuff
+USER root
 RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
     chmod -R go+rx $CONDA_DIR/share/jupyter && \
     rm -rf $HOME/.local && \
